@@ -11,5 +11,7 @@ public class App
         System.out.println(Modele.connexionBDD("hotel_neptune"));
         System.out.println(Modele.connexionAdmin("test", "testtest"));
         System.out.println(Modele.connexionClient("kevincarbeti@gmail.com", "testtest"));
+        System.out.println(Modele.getChambres().get(0).getDescription());
+        
     }
 }

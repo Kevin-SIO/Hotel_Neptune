@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class Modele {
 
@@ -73,6 +74,32 @@ public class Modele {
 		catch (SQLException e){
 			System.out.println(e);
 			return false;
+		}
+	}
+	
+	public static ArrayList<Chambre> getChambres() {
+		String sql = "SELECT id_chambre,descr, chemin_image, nb_place, prix, nom_categorie FROM chambre, categorie WHERE chambre.id_categorie = categorie.id_categorie;";
+		ArrayList<Chambre> r = new ArrayList<Chambre>();
+		
+		try {
+			rs = st.executeQuery(sql);
+			while(rs.next()) {
+				
+				int i = rs.getInt("id_chambre");
+				String d = rs.getString("descr");
+				String c = rs.getString("chemin_image");
+				int nb = rs.getInt("nb_place");
+				int p = rs.getInt("prix");
+				String cat = rs.getString("nom_categorie");
+				
+				r.add(new Chambre(i, d, nb, cat, p, c));
+				
+			}
+			
+			return r;
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
 		}
 	}
 	
